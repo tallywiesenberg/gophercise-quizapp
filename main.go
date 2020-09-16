@@ -30,11 +30,20 @@ func main() {
 	}
 	problems := parseLines(lines)
 	fmt.Println(problems)
-
+	
+	//COMMAND LINE OUTPUT AND INPUT w/ scanner
 	for i, p := range problems {
+
+		//output
 		fmt.Printf("Problem #%d: %s = \n", 
 		i+1, //question number starts at 1, not 0
 		p.q)  //the question included
+
+		var answer string
+		fmt.Scanf("%s\n", &answer)
+		if answer == p.a {
+			fmt.Println("correct!")
+		}
 	}
 }
 
