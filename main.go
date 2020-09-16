@@ -32,6 +32,9 @@ func main() {
 	fmt.Println(problems)
 	
 	//COMMAND LINE OUTPUT AND INPUT w/ scanner
+
+	//set a counter for number of correct answers
+	correct := 0
 	for i, p := range problems {
 
 		//output
@@ -42,9 +45,11 @@ func main() {
 		var answer string
 		fmt.Scanf("%s\n", &answer)
 		if answer == p.a {
-			fmt.Println("correct!")
+			correct++
 		}
 	}
+	//return results to user
+	fmt.Printf("You scored %d out of %d. \n", correct, len(problems))
 }
 
 func parseLines(lines [][]string) []problem {
