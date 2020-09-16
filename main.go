@@ -22,14 +22,36 @@ func main() {
 		os.Exit(1)
 	}
 
+	//reading and parsing the csv into an array
 	r :=csv.NewReader(file)
 	lines, err :=r.ReadAll()
 	if err != nil {
 		exit("Failed to parse the provided CSV file.")
 	}
-	fmt.Println(lines)
-
+	problems := parseLines(lines)
+	fmt.Println(problems)
 }
+
+func parseLines(lines [][]string) []problem {
+	//each []problem slice is a row from the csv file
+	//representing each row as a "problem" struct
+	ret := make([]problem, len(lines))
+	
+	for i, line := range(lines) {
+		ret[i] = problem {
+			q: line[0],
+			a: line[1],
+		}
+	}
+
+	return ret
+}
+
+type problem struct {
+	q string
+	a string
+}
+
 
 func exit(msg string) {
 	fmt.Printf(msg) //troubleshooting for the user
