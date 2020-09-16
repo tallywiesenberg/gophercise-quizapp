@@ -30,6 +30,12 @@ func main() {
 	}
 	problems := parseLines(lines)
 	fmt.Println(problems)
+
+	for i, p := range problems {
+		fmt.Printf("Problem #%d: %s = \n", 
+		i+1, //question number starts at 1, not 0
+		p.q)  //the question included
+	}
 }
 
 func parseLines(lines [][]string) []problem {
