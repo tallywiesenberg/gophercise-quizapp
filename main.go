@@ -1,6 +1,10 @@
 package main
 
-import "flag"
+import ( 
+	"flag"
+	"fmt"
+	"os"
+)
 
 func main() {
 
@@ -11,5 +15,17 @@ func main() {
 	flag.Parse()
 
 	
-	_ = csvFilename
+	file, err := os.Open(*csvFilename)
+	if err != nil {
+		//return a formatted string for client troubleshooting
+		exit(fmt.Sprintf("Failed to open the csv file: %s \n", *csvFilename))
+		os.Exit(1)
+	}
+
+	_ = file
+}
+
+func exit(msg string) {
+	fmt.Printf(msg) //troubleshooting for the user
+	os.Exit(1)
 }
